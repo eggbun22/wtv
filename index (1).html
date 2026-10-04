@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I'm sorry 💖</title>
+<style>
+:root{--pink:#ffc2d9;--hot:#ff8fb8;--ink:#6b3a55;--bg1:#ffe3f1;--bg2:#d9ccff}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;font-family:"Comic Sans MS","Baloo 2","Trebuchet MS",sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2))}
+.scr{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px))}
+.scr.on{display:flex}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.star{position:fixed;font-size:20px;animation:tw 3s infinite ease-in-out;opacity:.7}
+@keyframes tw{50%{transform:scale(1.6) rotate(20deg);opacity:1}}
+/* letter */
+.card{max-width:460px;background:#fffafc;border:4px solid var(--pink);border-radius:28px;padding:24px 22px;box-shadow:0 8px 0 var(--hot),0 20px 40px #ff8fb855;text-align:center;line-height:1.55;font-size:17px}
+.card h1{font-size:26px;margin-bottom:10px}
+.card p{opacity:0;animation:up .9s forwards;margin:8px 0}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+#env{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:6;background:linear-gradient(#fff,#ffe0ee);border:3px solid var(--hot);border-radius:20px;padding:10px 18px;font-size:16px;cursor:pointer;opacity:0;animation:drop 1s 7s forwards,bob 1.6s 8s infinite;box-shadow:0 5px 0 var(--hot);font-family:inherit;color:var(--ink)}
+@keyframes drop{from{opacity:0;top:-60px}to{opacity:1}}
+@keyframes bob{50%{transform:translateX(-50%) translateY(6px) rotate(-2deg)}}
+/* curtain */
+#cur{position:fixed;left:0;right:0;top:0;height:125%;z-index:20;transform:translateY(-105%);transition:transform 1.4s cubic-bezier(.6,0,.3,1);pointer-events:none;
+background:radial-gradient(circle at 10% 100%,#fff 0 9%,transparent 9.5%),radial-gradient(circle at 35% 100%,#ffe0ee 0 11%,transparent 11.5%),radial-gradient(circle at 62% 100%,#fff 0 10%,transparent 10.5%),radial-gradient(circle at 90% 100%,#ffe0ee 0 12%,transparent 12.5%),linear-gradient(#ffd6e8,#fff 70%)}
+#cur.down{transform:translateY(0)}
+#cur:after{content:"✨ one sec… ✨";position:absolute;top:45%;width:100%;text-align:center;font-size:26px}
+/* heart */
+#heart{width:min(62vw,280px);cursor:pointer;animation:beat 1.2s infinite;filter:drop-shadow(0 10px 0 #ff8fb855);user-select:none;-webkit-tap-highlight-color:transparent}
+@keyframes beat{50%{transform:scale(1.08)}}
+#heart.pop{animation:pop .4s}
+@keyframes pop{40%{transform:scale(1.35) rotate(6deg)}}
+#hint{margin-top:14px;font-size:20px;background:#fffafc;padding:8px 18px;border-radius:99px;border:3px solid var(--pink)}
+/* scene */
+#scene{background:linear-gradient(#bfb6ea,#f6d9dc 62%);padding:0}
+.cl{position:absolute;width:120px;animation:drift linear infinite}
+@keyframes drift{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+#gnd{position:absolute;left:0;right:0;bottom:0;height:36%;width:100%}
+.tf{transform-box:fill-box;transform-origin:50% 100%;animation:sway 2.2s infinite ease-in-out}
+@keyframes sway{50%{transform:skewX(9deg) scaleY(1.06)}}
+#cast{position:absolute;left:0;right:0;bottom:17%;display:flex;justify-content:center;align-items:flex-end;pointer-events:none}
+#couple{width:min(46vw,250px)}.pet{width:min(26vw,130px)}
+svg *{stroke-linejoin:round;stroke-linecap:round}
+.br{transform-box:fill-box;transform-origin:50% 100%;animation:br 2.6s infinite ease-in-out}
+@keyframes br{50%{transform:scale(1.025,1.04)}}
+.tail{transform-box:fill-box;transform-origin:0 100%;animation:wag .7s infinite alternate ease-in-out}
+@keyframes wag{to{transform:rotate(22deg)}}
+.bl{transform-box:fill-box;transform-origin:center;animation:bl 4s infinite}
+@keyframes bl{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.wh{transform-box:fill-box;transform-origin:100% 50%;animation:tw2 3s infinite}
+.wh.r{transform-origin:0 50%}
+@keyframes tw2{0%,85%,100%{transform:rotate(0)}90%{transform:rotate(-7deg)}95%{transform:rotate(4deg)}}
+.lean{transform-box:fill-box;animation:ln 3s infinite ease-in-out}
+@keyframes ln{50%{transform:rotate(3deg)}}
+.kh{transform-box:fill-box;transform-origin:center;animation:kh 1.6s infinite}
+@keyframes kh{50%{transform:scale(1.5) translateY(-4px)}}
+.hat{transform-box:fill-box;transform-origin:50% 100%;animation:hat 2.5s infinite ease-in-out}
+@keyframes hat{50%{transform:rotate(-6deg)}}
+.hrt{position:absolute;font-size:22px;animation:fl 2.4s infinite}
+@keyframes fl{from{transform:translateY(0);opacity:1}to{transform:translateY(-70px);opacity:0}}
+#final{position:absolute;top:5%;left:50%;transform:translateX(-50%);width:min(92vw,440px);text-align:center;background:#fffafcee;border:4px solid var(--pink);border-radius:26px;padding:16px;z-index:8;animation:up 1s forwards;font-size:17px;box-shadow:0 6px 0 var(--hot)}
+#final h2{font-size:22px;margin-bottom:6px}
+.btn{font-family:inherit;font-size:18px;border:3px solid var(--hot);background:var(--pink);color:var(--ink);padding:10px 20px;border-radius:99px;margin:10px 6px 0;cursor:pointer;box-shadow:0 4px 0 var(--hot)}
+.btn:active{transform:translateY(3px);box-shadow:none}
+#no{position:relative}
+</style></head><body>
+<canvas id="fx"></canvas>
+<script>for(let i=0;i<14;i++){document.write(`<span class="star" style="left:${Math.random()*95}%;top:${Math.random()*95}%;animation-delay:${Math.random()*3}s">${['✨','⭐','💖','☁️','🎀'][i%5]}</span>`)}</script>
+
+<!-- 1: apology -->
+<div class="scr on" id="s1">
+  <div class="card">
+    <h1>hey you… 🥺💗</h1>
+    <p style="animation-delay:.5s">I'm really, truly sorry. I hurt you, and I hate that I did.</p>
+    <p style="animation-delay:2s">I thought about everything, and I know I should've listened better and been softer with you.</p>
+    <p style="animation-delay:3.5s">I miss you every single day. Your laugh, your chaos, all of it.</p>
+    <p style="animation-delay:5s">Please forgive me, and say sorry back if you feel it too… and let's be together again. 🌸</p>
+  </div>
+</div>
+<button id="env">💌 a message for you… tap me</button>
+
+<!-- 2: heart -->
+<div class="scr" id="s2">
+  <svg id="heart" viewBox="0 0 100 90"><path d="M50 85C10 55 2 35 2 24 2 11 12 3 24 3c11 0 21 7 26 17C55 10 65 3 76 3c12 0 22 8 22 21 0 11-8 31-48 61z" fill="#ffc2d9" stroke="#ff8fb8" stroke-width="3"/><ellipse cx="25" cy="22" rx="9" ry="6" fill="#fff" opacity=".7" transform="rotate(-30 25 22)"/><circle cx="38" cy="45" r="3" fill="#6b3a55"/><circle cx="62" cy="45" r="3" fill="#6b3a55"/><path d="M44 53q6 6 12 0" stroke="#6b3a55" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="30" cy="52" r="5" fill="#ff8fb8" opacity=".5"/><circle cx="70" cy="52" r="5" fill="#ff8fb8" opacity=".5"/></svg>
+  <div id="hint">tap the heart 3 times 💗 <b id="cnt">0/3</b></div>
+</div>
+
+<!-- 3: scene -->
+<svg width="0" height="0" style="position:absolute"><filter id="w"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter></svg>
+<div class="scr" id="scene">
+<svg class="cl" viewBox="0 0 120 60" style="filter:url(#w);top:6%;animation-duration:45s;animation-delay:0s"><path d="M20 52Q4 52 6 38Q8 26 24 28Q26 10 46 12Q58 2 72 14Q92 8 96 28Q116 28 114 42Q112 52 98 52Z" fill="#fff" stroke="#2b2b2b" stroke-width="3"/></svg><svg class="cl" viewBox="0 0 120 60" style="filter:url(#w);top:18%;animation-duration:65s;animation-delay:-25s"><path d="M20 52Q4 52 6 38Q8 26 24 28Q26 10 46 12Q58 2 72 14Q92 8 96 28Q116 28 114 42Q112 52 98 52Z" fill="#fff" stroke="#2b2b2b" stroke-width="3"/></svg><svg class="cl" viewBox="0 0 120 60" style="filter:url(#w);top:2%;animation-duration:55s;animation-delay:-40s"><path d="M20 52Q4 52 6 38Q8 26 24 28Q26 10 46 12Q58 2 72 14Q92 8 96 28Q116 28 114 42Q112 52 98 52Z" fill="#fff" stroke="#2b2b2b" stroke-width="3"/></svg>
+<svg id="gnd" viewBox="0 0 800 170" preserveAspectRatio="xMidYMax slice" style="filter:url(#w)"><path d="M0 50Q200 18 400 44T800 34V170H0Z" fill="#a9cfa0" stroke="#2b2b2b" stroke-width="3.5"/><path d="M0 100Q220 78 440 98T800 90V170H0Z" fill="#8dbf88"/><g id="tfs"></g><g stroke="#2b2b2b" stroke-width="2.5"><circle cx="90" cy="120" r="6" fill="#f2d04a"/><circle cx="330" cy="140" r="6" fill="#fff"/><circle cx="560" cy="118" r="6" fill="#f4a3bd"/><circle cx="720" cy="144" r="6" fill="#f2d04a"/></g></svg>
+<div id="final"><h2>I'm sorry, my love 💖</h2><div>Say sorry back, and be mine again?</div><button class="btn" id="yes">Yes, forever 💍</button><button class="btn" id="no">no 😤</button></div>
+<div id="cast"><svg class="pet br" viewBox="0 0 120 140" style="filter:url(#w)"><path class="tail" d="M28 124Q4 118 8 90" fill="none" stroke="#2b2b2b" stroke-width="15"/><path class="tail" d="M28 124Q4 118 8 90" fill="none" stroke="#a5adc0" stroke-width="9"/><path d="M26 118Q26 90 60 90Q94 90 94 118Q94 138 60 138Q26 138 26 118Z" fill="#a5adc0" stroke="#2b2b2b" stroke-width="3"/><path d="M44 138Q40 108 60 104Q80 108 76 138Z" fill="#fff"/><path d="M26 54L22 16L52 34ZM94 54L98 16L68 34Z" fill="#a5adc0" stroke="#2b2b2b" stroke-width="3"/><path d="M30 46L28 26L42 36Z" fill="#f4c6cf"/><path d="M90 46L92 26L78 36Z" fill="#f4c6cf"/><ellipse cx="60" cy="64" rx="38" ry="30" fill="#a5adc0" stroke="#2b2b2b" stroke-width="3"/><path d="M60 36Q48 52 40 56Q36 74 50 84Q60 90 70 84Q84 74 80 56Q72 52 60 36Z" fill="#fff"/><g class="bl"><circle cx="46" cy="62" r="4.5" fill="#6fb4ee" stroke="#2b2b2b" stroke-width="2"/><circle cx="74" cy="62" r="4.5" fill="#6fb4ee" stroke="#2b2b2b" stroke-width="2"/><circle cx="46" cy="62" r="1.8" fill="#2b2b2b"/><circle cx="74" cy="62" r="1.8" fill="#2b2b2b"/></g><ellipse cx="60" cy="72" rx="5.5" ry="4" fill="#2b2b2b"/><path d="M60 76Q52 86 46 80M60 76Q68 86 74 80" fill="none" stroke="#2b2b2b" stroke-width="2"/><path d="M56 82Q60 96 64 82Z" fill="#e88aa0" stroke="#2b2b2b" stroke-width="2"/><g class="hat"><polygon points="60,4 45,38 75,38" fill="#e8749a" stroke="#2b2b2b" stroke-width="3"/><circle cx="57" cy="20" r="2.5" fill="#f2d04a"/><circle cx="65" cy="29" r="2.5" fill="#fff"/><circle cx="60" cy="3" r="5" fill="#f2d04a" stroke="#2b2b2b" stroke-width="2.5"/></g></svg><svg id="couple" class="br" viewBox="0 0 240 240" style="filter:url(#w);animation-delay:.3s">
+<path d="M34 240L52 154Q86 140 112 154L130 240Z" fill="#fff" stroke="#2b2b2b" stroke-width="3"/><path d="M60 240L68 168L88 240ZM100 240L96 170L118 240Z" fill="#d9d2f0" opacity=".8"/>
+<path d="M120 240L126 156Q152 142 180 156L200 240Z" fill="#7a74b0" stroke="#2b2b2b" stroke-width="3"/><path d="M142 150L152 176L164 150Z" fill="#fff" stroke="#2b2b2b" stroke-width="2.5"/><path d="M150 168L153 184L157 168Z" fill="#e8749a" stroke="#2b2b2b" stroke-width="2"/>
+<g class="lean" style="transform-origin:90px 150px"><path d="M52 112Q46 160 62 178L110 178Q122 150 112 112Z" fill="#eee9fb" stroke="#2b2b2b" stroke-width="3"/><circle cx="86" cy="100" r="31" fill="#f1c9ae" stroke="#2b2b2b" stroke-width="3"/><path d="M54 98Q52 62 88 64Q122 64 118 98Q104 78 90 80Q68 80 54 98Z" fill="#4a3228" stroke="#2b2b2b" stroke-width="3"/><path d="M104 102q4-5 9 0" fill="none" stroke="#2b2b2b" stroke-width="2.5"/><circle cx="72" cy="112" r="5" fill="#e8749a" opacity=".55"/><circle cx="52" cy="92" r="7" fill="#e8749a" stroke="#2b2b2b" stroke-width="2"/></g>
+<g class="lean" style="transform-origin:150px 150px;animation-delay:-1.5s"><circle cx="150" cy="100" r="30" fill="#f1c9ae" stroke="#2b2b2b" stroke-width="3"/><g fill="#2f2540" stroke="#2b2b2b" stroke-width="2.5"><circle cx="128" cy="82" r="9"/><circle cx="142" cy="72" r="10"/><circle cx="158" cy="70" r="10"/><circle cx="172" cy="78" r="9"/><circle cx="178" cy="92" r="7"/></g><path d="M130 102q4-5 9 0" fill="none" stroke="#2b2b2b" stroke-width="2.5"/><circle cx="166" cy="112" r="5" fill="#e8749a" opacity=".55"/></g>
+<path class="kh" d="M118 128q-9-9-3-14q4-3 3 2q-1-5 4-2q6 5-4 14z" fill="#e8749a" stroke="#2b2b2b" stroke-width="2"/>
+</svg><svg class="pet br" viewBox="0 0 120 140" style="filter:url(#w);animation-delay:.6s"><path class="tail" d="M92 124Q116 118 112 92" fill="none" stroke="#2b2b2b" stroke-width="13"/><path class="tail" d="M92 124Q116 118 112 92" fill="none" stroke="#f0a35e" stroke-width="7"/><path d="M26 118Q26 90 60 90Q94 90 94 118Q94 138 60 138Q26 138 26 118Z" fill="#fff" stroke="#2b2b2b" stroke-width="3"/><path d="M70 98Q92 96 92 118Q90 134 74 136Q80 114 70 98Z" fill="#f0a35e"/><path d="M26 50L22 18L50 36ZM94 50L98 18L70 36Z" fill="#fff" stroke="#2b2b2b" stroke-width="3"/><ellipse cx="60" cy="64" rx="38" ry="30" fill="#fff" stroke="#2b2b2b" stroke-width="3"/><path d="M26 50L22 18L50 36Q38 40 34 56Z" fill="#f0a35e" stroke="#2b2b2b" stroke-width="3"/><path d="M32 54Q36 40 54 36Q46 48 48 64Q34 64 32 54Z" fill="#f0a35e"/><g class="bl"><circle cx="46" cy="62" r="3.3" fill="#2b2b2b"/><circle cx="74" cy="62" r="3.3" fill="#2b2b2b"/></g><path d="M56 68h8l-4 5z" fill="#e88aa0" stroke="#2b2b2b" stroke-width="2"/><path d="M60 73Q54 82 48 76M60 73Q66 82 72 76" fill="none" stroke="#2b2b2b" stroke-width="2"/><path d="M50 78l2 6 3-6z" fill="#fff" stroke="#2b2b2b" stroke-width="1.5"/><g class="wh" fill="none" stroke="#2b2b2b" stroke-width="1.8"><path d="M32 66Q16 60 2 66M32 72Q14 74 4 84"/></g><g class="wh r" fill="none" stroke="#2b2b2b" stroke-width="1.8"><path d="M88 66Q104 60 118 66M88 72Q106 74 116 84"/></g><g class="hat"><polygon points="60,4 45,38 75,38" fill="#e8749a" stroke="#2b2b2b" stroke-width="3"/><circle cx="57" cy="20" r="2.5" fill="#f2d04a"/><circle cx="65" cy="29" r="2.5" fill="#fff"/><circle cx="60" cy="3" r="5" fill="#f2d04a" stroke="#2b2b2b" stroke-width="2.5"/></g></svg></div>
+</div>
+<div id="cur"></div>
+
+<script>
+const $=id=>document.getElementById(id),cv=$('fx'),c=cv.getContext('2d');
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+let P=[],auto=false;
+const cols=['#ff8fb8','#ffe36b','#8fd3ff','#b69cff','#fff','#7af0b0'];
+function boom(x,y,n=46){const k=cols[Math.random()*6|0],k2=cols[Math.random()*6|0];for(let i=0;i<n;i++){const a=Math.PI*2*i/n,s=2+Math.random()*4;P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1,col:i%2?k:k2,h:Math.random()<.25})}}
+(function loop(){c.clearRect(0,0,cv.width,cv.height);P=P.filter(p=>p.l>0);for(const p of P){p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.vx*=.985;p.l-=.013;c.globalAlpha=Math.max(p.l,0);c.fillStyle=p.col;if(p.h){c.font='14px serif';c.fillText('💖',p.x,p.y)}else{c.beginPath();c.arc(p.x,p.y,2.8,0,7);c.fill()}}c.globalAlpha=1;requestAnimationFrame(loop)})();
+setInterval(()=>{if(auto)boom(Math.random()*cv.width,Math.random()*cv.height*.55)},650);
+const show=id=>{document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));$(id).classList.add('on')};
+// message -> curtain
+$('env').onclick=()=>{$('env').style.display='none';$('cur').classList.add('down');setTimeout(()=>{show('s2')},1500);setTimeout(()=>$('cur').classList.remove('down'),2100)};
+// heart x3
+let n=0;$('heart').onclick=e=>{n++;$('cnt').textContent=n+'/3';const h=$('heart');h.classList.remove('pop');void h.offsetWidth;h.classList.add('pop');
+ boom(e.clientX,e.clientY,40);boom(Math.random()*cv.width,Math.random()*cv.height*.5,30);
+ if(n==3){auto=true;for(let i=0;i<6;i++)setTimeout(()=>boom(Math.random()*cv.width,Math.random()*cv.height*.6,60),i*180);setTimeout(()=>{show('scene');hearts()},700)}};
+function hearts(){setInterval(()=>{const s=document.createElement('span');s.className='hrt';s.textContent=['💖','💕','🌸'][Math.random()*3|0];s.style.left=(35+Math.random()*30)+'%';s.style.bottom='38%';s.style.position='absolute';$('scene').appendChild(s);setTimeout(()=>s.remove(),2400)},500)}
+const tfs=document.getElementById('tfs');for(let i=0;i<34;i++){const x=Math.random()*790+5,y=60+Math.random()*100;tfs.insertAdjacentHTML('beforeend',`<g transform="translate(${x} ${y})"><path class="tf" style="animation-delay:-${Math.random()*2}s" d="M0 0Q2-14-5-26Q9-14 7 0M8 0Q13-12 10-22Q19-10 16 0" fill="#6fa56b" stroke="#2b2b2b" stroke-width="2"/></g>`)}
+// yes / runaway no
+$('yes').onclick=()=>{for(let i=0;i<10;i++)setTimeout(()=>boom(Math.random()*cv.width,Math.random()*cv.height*.7,70),i*120);$('final').innerHTML='<h2>YAYYY 🥹💖</h2><div>I love you so much. Forever starts now. 💍✨</div>'};
+const no=$('no');function run(e){e.preventDefault();no.style.left=(Math.random()*120-60)+'px';no.style.top=(Math.random()*60-10)+'px';no.textContent=['nope 😝','nice try 💗','say yes 🥺'][Math.random()*3|0]}
+no.onmouseenter=run;no.onclick=run;no.ontouchstart=run;
+</script>
+</body></html>
